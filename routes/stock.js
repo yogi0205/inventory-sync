@@ -87,7 +87,54 @@ router.post('/update-stock', async (req, res) => {
 }
 });
 
+//Get All products 
+router.get('/products', async (req, res) => {
+    try {
 
+        const [rows] = await db.execute(
+            'SELECT product_id, stock_quantity FROM products'
+        );
+
+        return res.json(rows);
+
+    } catch (err) {
+        console.error(err);
+
+        return res.status(500).json({
+            error: 'Database error'
+        });
+    }
+});
+
+//Get Single Product
+router.get('/products/:id', async (req, res) => {
+    try {
+
+        const productId = req.params.id;
+
+        const [rows] = await db.execute(
+            'SELECT product_id, stock_quantity FROM products WHERE product_id = ?',
+            [productId]
+        );
+
+        if (rows.length === 0) {
+            return res.status(404).json({
+                error: 'Product not found'
+            });
+        }
+
+        return res.json(rows[0]);
+
+    } catch (err) {
+        console.error(err);
+
+        return res.status(500).json({
+            error: 'Database error'
+        });
+    }
+});
+
+//Get product stock history
 router.get('/products/:id/history', async (req, res) => {
     try {
         // Extract the product ID from the URL parameters

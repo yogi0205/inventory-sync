@@ -1,4 +1,13 @@
 # Real-Time Inventory Sync System
+Before coding anything else
+
+Update your notes and commit this version:
+
+git add .
+git commit -m "Inventory Sync System V1 complete"
+git push
+
+This gives you a stable checkpoint.
 
 ## 1. Problem Statement
 
