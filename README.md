@@ -1,5 +1,4 @@
-# Real-Time Inventory System
-
+# Inventory Management System
 A backend inventory management system built with **Node.js, Express.js, and MySQL** for managing product stock and tracking inventory changes.
 
 ## Features
